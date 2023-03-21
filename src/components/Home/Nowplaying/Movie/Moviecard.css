@@ -1,0 +1,30 @@
+.movie-card {
+    height: 200px;
+    min-width: 200px;
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+    height: auto;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: rgb(243, 240, 240);
+}
+
+.poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.images {
+    width: 200px;
+    height: auto;
+}
+.movie-name {
+    font-size: large;
+   font-weight: 600;
+   margin-bottom: -1px;
+}
+.views {
+    display: flex;
+    justify-content: space-between;
+}

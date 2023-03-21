@@ -1,0 +1,54 @@
+.navbar {
+    border-bottom: 2px solid gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 30px;
+}
+img {
+    height: 40px;
+    cursor: pointer;
+}
+.right {
+    display: flex;
+    gap: 20px;
+}
+.search-box {
+    display: flex;
+    gap: 20px;
+}
+input {
+    padding: 15px;
+    width: 250px;
+    background: transparent;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    font-size: 18px;
+    outline: none;
+}
+.nav-button {
+    padding: 15px 20px;
+    background: transparent;
+    border: 1px solid blue;
+    color: blue;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.whislist {
+    font-size: 45px;
+    margin-top: 5px;
+}
+.user {
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    gap: 15px;
+    border-radius: 10px;
+}
+.user span {
+    color: red;
+    font-weight: 500;
+}
