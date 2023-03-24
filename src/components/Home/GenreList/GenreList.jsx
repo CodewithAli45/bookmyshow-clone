@@ -10,7 +10,6 @@ export function GenreList({onSelect}) {
   useEffect(() => {
     const fetchGenre  = async () => {
       const response = await axios.get(url);
-      console.log(response.data.genres);
       setGenres(response.data.genres);
     }
     fetchGenre();

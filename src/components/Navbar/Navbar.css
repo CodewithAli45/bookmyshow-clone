@@ -17,7 +17,7 @@ img {
     display: flex;
     gap: 20px;
 }
-input {
+.search-box-input {
     padding: 15px;
     width: 250px;
     background: transparent;
@@ -38,17 +38,33 @@ input {
 .whislist {
     font-size: 45px;
     margin-top: 5px;
+    cursor: pointer;
+}
+.red-wished {
+    font-size: 45px;
+    margin-top: 5px;
+    cursor: pointer;
+    fill: red;
 }
 .user {
     display: flex;
+    flex-direction: column;
+    min-width: 80px;
+    cursor: pointer;
     padding: 5px;
     justify-content: center;
     align-items: center;
     border: 1px solid gray;
-    gap: 15px;
-    border-radius: 10px;
+    gap: 5px;
+    border-radius: 15px;
 }
 .user span {
     color: red;
     font-weight: 500;
+    text-decoration: none;
+}
+Link {
+    text-decoration: none;
+    color: black;
+    background-color: black;
 }

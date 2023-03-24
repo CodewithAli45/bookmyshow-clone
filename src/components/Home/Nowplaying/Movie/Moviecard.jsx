@@ -2,7 +2,8 @@ import React from 'react';
 import './Moviecard.css'
 
 export function Moviecard({movies}) {
-    const baseImageurl = `https://image.tmdb.org/t/p/w500/${movies.poster_path}`
+    const baseImageurl = `https://image.tmdb.org/t/p/w500/${movies.poster_path}`;
+    // console.log(movies);
   return (
     <div className='movie-card'>
         <div className="poster">
