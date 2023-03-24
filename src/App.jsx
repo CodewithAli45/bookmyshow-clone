@@ -1,6 +1,6 @@
 import React from 'react';
 import { Home } from './components/Home/Home';
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {HashRouter, Routes, Route} from 'react-router-dom'
 import { Wishlist } from './components/Wishlist/Wishlist';
 import { Seatbooking } from './components/Seatbooking/Seatbooking';
 import { Signup } from './components/Authentication/Signup';
@@ -10,7 +10,7 @@ import { ModalCheck } from './components/Checkout/ModalCheck';
 
 export function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path='*' element={<h1>404: Page not found</h1>} />
         <Route path='/' element={<Home/>} />
@@ -21,7 +21,7 @@ export function App() {
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/checkout/modal' element={<ModalCheck />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
