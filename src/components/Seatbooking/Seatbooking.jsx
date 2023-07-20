@@ -17,9 +17,9 @@ export const Seatbooking = () => {
   }
 
     const handleBookTicket = (e) => {
-        console.log(email, pass);
+        // console.log(email, pass);
         e.preventDefault();
-        if(email === null || pass === null){
+        if(email === '' || pass === ''){
             navigate('/signup');
         } else {
             navigate('/checkout')

@@ -96,3 +96,30 @@ h2 {
   background-color: rgba(56, 35, 3, 0.836);
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .movie-details-card {
+    max-width: 300px;
+    flex-direction: column;
+  }
+
+  .left-card img {
+    width: 220px;
+  }
+  .right-card h1 {
+    font-size: 16px;
+  }
+  .overview{
+    text-align: justify;
+  }
+  .btn {
+    margin-top: 0px;
+    justify-content: space-between;
+    
+  }
+  .movie-details-card button {
+    width: auto;
+    background-color: rgba(168, 72, 8, 0.836);
+  }
+  
+}

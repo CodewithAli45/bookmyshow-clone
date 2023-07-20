@@ -3,21 +3,22 @@ import { Moviecard } from './Movie/Moviecard';
 import { useNavigate } from 'react-router-dom';
 import { Contextdetails } from '../../Context/MyContext';
 import './Nowplaying.css';
+import {apiKey} from '../../../api.js'
 
 export function Nowplaying({ genreId, searchQuery, searchButtonClicked }) {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-
   const GlobalState = useContext(Contextdetails);
   const dispatch = GlobalState.dispatch;
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    let apiUrl = 'https://api.themoviedb.org/3/movie/now_playing?api_key=30e385b7eb29dd214d2362ad4b5df3ac';
+    let apiUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`;
 
     if (genreId) {
       apiUrl += `&with_genres=${genreId}`;
+      
     }
 
     fetch(apiUrl)
@@ -28,6 +29,7 @@ export function Nowplaying({ genreId, searchQuery, searchButtonClicked }) {
   }, [genreId]);
 
   const randomNumber = Math.floor(Math.random() * 50) + 250;
+
   const handleMovieClick = (movie) => {
     setSelectedMovie(movie);
     
@@ -39,7 +41,6 @@ export function Nowplaying({ genreId, searchQuery, searchButtonClicked }) {
 
   const handleWishlist = () => {
     dispatch({type: 'ADD', payload : selectedMovie});
-    console.log('cart opertation from ProductInfo page');
   }
   const handleBookTicket = () => {
     console.log('ticket book');
@@ -72,9 +73,9 @@ export function Nowplaying({ genreId, searchQuery, searchButtonClicked }) {
             <div className="right-card">
                 <h1>{selectedMovie.title}</h1>
                 <p><span>Rating: </span> {selectedMovie.vote_average}/10</p>
-                <p><span>Language:</span> {selectedMovie.original_language}</p>
-                <p><span>Duration:</span> {selectedMovie.runtime} minutes</p>
-                <p><span>Overview:</span>  {selectedMovie.overview}</p>
+                <p><span>Language:</span> {selectedMovie?.original_language}</p>
+                <p><span>Release Date:</span> {selectedMovie.release_date}</p>
+                <p className='overview'><span >Overview:</span>  {selectedMovie.overview}</p>
                 <p><span>Price:</span> &#8377; {randomNumber} per Seat</p>
                 <div className="btn">
                     <button onClick={handleBookTicket}>Book Ticket</button>

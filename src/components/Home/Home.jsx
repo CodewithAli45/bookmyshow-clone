@@ -10,9 +10,14 @@ export function Home() {
   const [selectedGenreId, setSelectedGenreId] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchButtonClicked, setSearchButtonClicked] = useState(false);
+  const [showGenre, setShowGenre] = useState(false);
+
 
   const handleGenreSelect = (genreId) => {
     setSelectedGenreId(genreId);
+  }
+  function handleShowGenre(){
+    setShowGenre(!showGenre);
   }
 
   return (
@@ -23,7 +28,13 @@ export function Home() {
           <GenreList onSelect={handleGenreSelect} />
         </div>
         <div className="nowplay">
-          <h1>Now Playing</h1>
+          <h1>Streaming on Cinema</h1>
+          <div className="sidebar-responsive" onClick={handleShowGenre} > <h2>Genres</h2>
+            {
+              showGenre && <GenreList onSelect={handleGenreSelect} />
+            }
+            
+          </div>
           <Nowplaying genreId={selectedGenreId} searchQuery={searchQuery} searchButtonClicked={searchButtonClicked} />
         </div>
       </div>

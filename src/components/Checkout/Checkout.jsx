@@ -26,9 +26,9 @@ export const Checkout = () => {
             <Navbar />
             <h1>Checkout</h1>
             <div className="container" >
-                    <div className="summary-section" >
+                <div className="summary-section" >
                     <h2>Summary</h2> 
-                    <h3 >movie title</h3>
+                    <h3 >Movie title</h3>
                     <div className="movie-price">
                         <p>Classic Ticket</p>
                         <p>&#8377; {randomNumber}</p>
@@ -50,7 +50,7 @@ export const Checkout = () => {
                     <h2>Payment</h2>
                     <div className="payment-form">
                         <label htmlFor="fname">First Name</label>
-                        <input type="text"id="fname" required/>
+                        <input type="text"id="fname" required={true}/>
                         <label htmlFor="lname">Last Name</label>
                         <input type="text"id="lname" required/>
                         <label htmlFor="email">Email</label>

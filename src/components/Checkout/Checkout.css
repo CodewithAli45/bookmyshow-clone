@@ -70,3 +70,35 @@ h2 {
     font-weight: 700;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 5px 15px;
+        gap: 10px;
+    }
+    .summary-section {
+        border-radius: 20px;
+    }
+    .payment-section {
+        width: 300px;
+        gap: 10px;
+        border: 1px solid salmon;
+        border-radius: 20px;
+    }
+    .payment-form {
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+    .payment-form input{
+        padding: 10px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid rgb(228, 77, 77);
+    }
+    .pay-btn {
+        width: 80%;
+        border-radius: 25px;
+        background-color: blue;
+    }
+}

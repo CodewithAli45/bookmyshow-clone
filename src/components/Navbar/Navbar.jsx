@@ -4,7 +4,6 @@ import { Contextdetails } from '../Context/MyContext';
 import {Link, useNavigate} from 'react-router-dom'
 import {AiFillHeart} from 'react-icons/ai';
 import {FaUserAlt} from 'react-icons/fa'
-import Mylogo from '../../mylogo.png';
 
 export function Navbar({searchQuery, setSearchQuery, setSearchButtonClicked}) {
     const [profile, setProfile] = useState("Profile");
@@ -41,10 +40,11 @@ export function Navbar({searchQuery, setSearchQuery, setSearchButtonClicked}) {
     }
 
   return (
+    <>
     <nav className='navbar'>
         <div className="left" >
             <Link to="/">
-                <img src={Mylogo} alt="Bookmyshow" />
+                <img className='left-image' src={'./mylogo.png'} alt="Bookmyshow" />
             </Link>
         </div>
         <div className="right">
@@ -58,9 +58,30 @@ export function Navbar({searchQuery, setSearchQuery, setSearchButtonClicked}) {
             
             <div className="user">
                     <FaUserAlt onClick={handleProfileClick} /> 
-                <span>{profile}</span>
+                <span>{name}</span>
             </div>
         </div>
     </nav>
+    <nav className="navbar-responsive">
+        <div className="left" >
+            <Link to="/">
+                <img className='left-image' src={'logo.png'} alt="Bookmyshow" />
+            </Link>
+            <div className="wishlist">
+                <Link to='/wishlist'>
+                    <AiFillHeart className={`whislist ${GlobalState.state.length > 0 ? 'red-wished': ""}`} />
+                </Link>
+            </div>
+            <div className="user">
+                <FaUserAlt onClick={handleProfileClick} /> 
+                <span>{name}</span>
+            </div>
+        </div>
+        <div className="search-box">
+            <input className="search-box-input" type="text" value={searchQuery} onChange={handleSearch} placeholder='search' id="movie" />
+            <button className='nav-button' type='submit' onClick={handleButton}>Search</button>
+        </div>
+    </nav>
+    </>
   )
 }

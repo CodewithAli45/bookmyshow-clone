@@ -22,28 +22,18 @@ h1{
     gap: 20px;
     
 }
-.trap-box-one {
+.trap-box-one, .trap-box-two, .trap-box-three {
     width: 35px;
     height: 35px;
     border: 1px solid black;
     border-top-right-radius: 30px;
     border-top-left-radius: 30px;
-  
 }
 .trap-box-two {
-    width: 35px;
-    height: 35px;
     background-color: blue;
-    border-top-right-radius: 30px;
-    border-top-left-radius: 30px;
-  
 }
 .trap-box-three {
-    width: 35px;
-    height: 35px;
     background-color: red;
-    border-top-right-radius: 30px;
-    border-top-left-radius: 30px;
 }
 .part-three, .part-five {
     display: flex;
@@ -83,10 +73,6 @@ h1{
   }
   
   .box.occupied {
-    background-color: red;
-  }
-  
-  .box.selected {
     background-color: blue;
   }
 
@@ -99,4 +85,27 @@ h1{
     color: white;
     background-color: rgba(190, 117, 6, 0.993);
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .part-one {
+        margin: 5px;
+    }
+    .booking-input {
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+    }
+    .trap-box-one, .trap-box-two, .trap-box-three {
+        height: 15px;
+    }
+    .part-four {
+        grid-template-columns: repeat(10, 30px);
+        grid-template-rows: repeat(10, 30px);
+    }
+    .box {
+        width: 20px;
+        height: 20px;
+        font-size: 9px;
+    }
 }

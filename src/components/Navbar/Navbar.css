@@ -3,11 +3,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: rgb(58, 55, 55);
     padding: 8px 30px;
 }
+
 img {
     height: 40px;
+}
+.left-image {
     cursor: pointer;
+    filter: white sepia(2);
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 .right {
     display: flex;
@@ -20,7 +29,7 @@ img {
 .search-box-input {
     padding: 15px;
     width: 250px;
-    background: transparent;
+    background: wheat;
     border: 1px solid lightgray;
     border-radius: 10px;
     font-size: 18px;
@@ -28,9 +37,10 @@ img {
 }
 .nav-button {
     padding: 15px 20px;
+    font-size: 18px;
     background: transparent;
-    border: 1px solid blue;
-    color: blue;
+    border: 1px solid wheat;
+    color: white;
     outline: none;
     border-radius: 10px;
     cursor: pointer;
@@ -40,6 +50,7 @@ img {
     margin-top: 5px;
     cursor: pointer;
 }
+
 .red-wished {
     font-size: 45px;
     margin-top: 5px;
@@ -50,6 +61,7 @@ img {
     display: flex;
     flex-direction: column;
     min-width: 80px;
+    color: white;
     cursor: pointer;
     padding: 5px;
     justify-content: center;
@@ -59,7 +71,7 @@ img {
     border-radius: 15px;
 }
 .user span {
-    color: red;
+    color: white;
     font-weight: 500;
     text-decoration: none;
 }
@@ -67,4 +79,58 @@ Link {
     text-decoration: none;
     color: black;
     background-color: black;
+}
+.navbar-responsive{
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        display: none;
+    }
+    .navbar-responsive{
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 10px;
+        
+    }
+    .left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    img {
+        height: 20px;
+    }
+    .wishlist{
+        font-size: 5px;
+        margin-top: 15px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav-button {
+        padding: 5px 10px;
+        font-size: 12px;
+        
+    }
+    .user {
+        border: none;
+    }
+    .search-box {
+        display: flex;
+        padding: 5px;
+        border-top: 1px solid wheat;
+    }
+    .search-box-input {
+        padding: 6px 10px;
+        height: 20px;
+        width: 220px;
+        background: rgb(54, 191, 233);
+        border: 1px solid rgb(46, 41, 41);
+    }
+   
 }

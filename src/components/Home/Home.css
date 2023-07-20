@@ -1,9 +1,42 @@
 .landing-page {
     display: flex;
-    
 }
 .sidebar {
-    min-width: 220px;
     padding-right: 10px;
     border-right: 1px solid gray;
+    background-color: rgb(223, 220, 220);
+    min-width: 250px;
+}
+.sidebar-responsive {
+    display: none;
+}
+.nowplay{
+    background-color: rgb(166, 177, 197);
+}
+.nowplay h1 {
+    border-bottom: 2px solid rgb(223, 37, 37);
+    padding-bottom: 5px;
+    color: rgb(107, 77, 20);
+}
+@media (max-width: 768px) {
+    .sidebar{
+        display: none;
+    }
+    .nowplay{
+        background-color: rgb(68, 69, 71);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .nowplay h1 {
+        color: rgb(231, 178, 80);
+    }
+    .sidebar-responsive{
+        display: flex;
+    }
+    .sidebar-responsive h2 {
+        color: rgb(226, 195, 138);
+        text-align: left;
+    }
 }

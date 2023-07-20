@@ -7,6 +7,7 @@ import { Signup } from './components/Authentication/Signup';
 import {Login} from './components/Authentication/Login';
 import { Checkout } from './components/Checkout/Checkout';
 import { ModalCheck } from './components/Checkout/ModalCheck';
+import './App.css';
 
 export function App() {
   return (
