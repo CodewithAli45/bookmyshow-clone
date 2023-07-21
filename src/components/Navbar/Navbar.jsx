@@ -6,14 +6,12 @@ import {AiFillHeart} from 'react-icons/ai';
 import {FaUserAlt} from 'react-icons/fa'
 
 export function Navbar({searchQuery, setSearchQuery, setSearchButtonClicked}) {
-    const [profile, setProfile] = useState("Profile");
+    const [profile, setProfile] = useState(false);
 
     const GlobalState = useContext(Contextdetails);
     const navigate = useNavigate();
 
     const name = localStorage.getItem('profile');
-    const email = localStorage.getItem('email');
-    const password = localStorage.getItem('pass');
     const loggedInUser = localStorage.getItem('loggedInUser');
     
     const handleSearch = (e) => {
@@ -27,16 +25,13 @@ export function Navbar({searchQuery, setSearchQuery, setSearchButtonClicked}) {
     }
     const handleProfileClick = (e) => {
         e.preventDefault();
-        console.log(name, email, password, loggedInUser);
-        if (name === null) {
-            navigate('/signup'); // user not registered, redirect to signup page
+        if (!loggedInUser) {
+        navigate('/signup'); // user not registered, redirect to signup page
+        } else {
+        setProfile(!profile);
+        navigate('/login');
         }
-        else if(name !== '' && email !== '' && password !== ''){
-            navigate('/login');
-        }
-        else if(loggedInUser !== null){
-            setProfile(name);
-        }
+        console.log(name);
     }
 
   return (
@@ -58,7 +53,7 @@ export function Navbar({searchQuery, setSearchQuery, setSearchButtonClicked}) {
             
             <div className="user">
                     <FaUserAlt onClick={handleProfileClick} /> 
-                <span>{name}</span>
+                <span>{profile ? name : 'Profile'}</span>
             </div>
         </div>
     </nav>
@@ -74,11 +69,11 @@ export function Navbar({searchQuery, setSearchQuery, setSearchButtonClicked}) {
             </div>
             <div className="user">
                 <FaUserAlt onClick={handleProfileClick} /> 
-                <span>{name}</span>
+                <span>{profile}</span>
             </div>
         </div>
         <div className="search-box">
-            <input className="search-box-input" type="text" value={searchQuery} onChange={handleSearch} placeholder='search' id="movie" />
+            <input className="search-box-input" type="text" value={searchQuery} onChange={handleSearch} placeholder='search' id="movie2" />
             <button className='nav-button' type='submit' onClick={handleButton}>Search</button>
         </div>
     </nav>

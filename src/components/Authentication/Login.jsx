@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link} from 'react-router-dom'
 import './LoginSignup.css'
 import { Navbar } from '../Navbar/Navbar';
 
@@ -56,6 +56,7 @@ export function Login() {
             }
             <button type='submit'>Submit</button>
         </form>
+        <Link to='/signup'><button className='registerBtn' type='submit'>Register</button></Link>
     </div>
     </div>
     
