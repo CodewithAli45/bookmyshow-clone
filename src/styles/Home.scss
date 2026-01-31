@@ -1,0 +1,25 @@
+.home-container {
+  display: flex;
+  min-height: calc(100vh - 64px); // Minus header height
+  margin-top: 64px; // Header height
+  background-color: #f2f2f2;
+}
+
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #666;
+    margin-top: 50px;
+}

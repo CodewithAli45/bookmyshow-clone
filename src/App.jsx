@@ -1,27 +1,28 @@
-import { motion } from 'framer-motion'
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import NowPlaying from './pages/NowPlaying';
+import Popular from './pages/Popular';
+import TopRated from './pages/TopRated';
+import Upcoming from './pages/Upcoming';
 
 function App() {
   return (
-    <div className="app-container">
-      <header className="hero">
-        <motion.h1 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Welcome to Book My Shows
-        </motion.h1>
-      </header>
-      
-      <main>
-        {/* Main content will go here */}
-      </main>
-
-      <footer className="footer">
-        <p>Thank you The Movie DB</p>
-      </footer>
-    </div>
-  )
+    <BrowserRouter>
+      <div className="app-container">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Navigate to="/now-playing" replace />} />
+          <Route path="/now-playing" element={<NowPlaying />} />
+          <Route path="/popular" element={<Popular />} />
+          <Route path="/top-rated" element={<TopRated />} />
+          <Route path="/upcoming" element={<Upcoming />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
