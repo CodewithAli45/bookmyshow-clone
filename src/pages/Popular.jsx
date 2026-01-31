@@ -3,8 +3,8 @@ import Home from '../components/Home';
 import { getPopular } from '../api';
 import '../styles/Popular.scss';
 
-const Popular = () => {
-  return <Home fetchMovies={getPopular} />;
+const Popular = ({ selectedGenre }) => {
+  return <Home fetchMovies={getPopular} selectedGenre={selectedGenre} />;
 };
 
 export default Popular;

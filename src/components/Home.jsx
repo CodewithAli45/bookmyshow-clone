@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Sidebar from './Sidebar';
 import MovieCard from './MovieCard';
+import MovieDetailsModal from './MovieDetailsModal';
 import '../styles/Home.scss';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Home = ({ fetchMovies }) => {
+const Home = ({ fetchMovies, selectedGenre }) => {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     const getMovies = async () => {
@@ -16,7 +16,6 @@ const Home = ({ fetchMovies }) => {
         setLoading(true);
         const response = await fetchMovies();
         setMovies(response.data.results);
-        console.log(response.data.results);
         setFilteredMovies(response.data.results);
       } catch (error) {
         console.error("Error fetching movies:", error);
@@ -26,7 +25,6 @@ const Home = ({ fetchMovies }) => {
     };
     
     getMovies();
-    setSelectedGenre(null); // Reset genre when category changes
   }, [fetchMovies]);
 
   useEffect(() => {
@@ -38,22 +36,39 @@ const Home = ({ fetchMovies }) => {
     }
   }, [selectedGenre, movies]);
 
+  // Listener for global genre selection from sidebar could be added via context or prop lifting.
+  // For now, let's assume we might need to lift state higher if Sidebar is global.
+  // Since Sidebar is now in App.jsx, we need a way to communicate.
+  // I'll lift the genre state to App.jsx next.
+
   return (
     <div className="home-container">
-      <Sidebar onGenreSelect={setSelectedGenre} selectedGenre={selectedGenre} />
       <main className="main-content">
         {loading ? (
              <div className="loading">Loading...</div>
         ) : (
             <motion.div layout className="movie-grid">
-            <AnimatePresence>
+            <AnimatePresence mode="popLayout">
               {filteredMovies.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
+                <MovieCard 
+                    key={movie.id} 
+                    movie={movie} 
+                    onClick={() => setSelectedMovie(movie)}
+                />
               ))}
             </AnimatePresence>
             </motion.div>
         )}
       </main>
+
+      <AnimatePresence>
+        {selectedMovie && (
+          <MovieDetailsModal 
+            movie={selectedMovie} 
+            onClose={() => setSelectedMovie(null)} 
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

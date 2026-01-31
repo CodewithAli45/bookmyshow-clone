@@ -3,8 +3,8 @@ import Home from '../components/Home';
 import { getNowPlaying } from '../api';
 import '../styles/NowPlaying.scss';
 
-const NowPlaying = () => {
-  return <Home fetchMovies={getNowPlaying} />;
+const NowPlaying = ({ selectedGenre }) => {
+  return <Home fetchMovies={getNowPlaying} selectedGenre={selectedGenre} />;
 };
 
 export default NowPlaying;

@@ -3,8 +3,8 @@ import Home from '../components/Home';
 import { getUpcoming } from '../api';
 import '../styles/Upcoming.scss';
 
-const Upcoming = () => {
-  return <Home fetchMovies={getUpcoming} />;
+const Upcoming = ({ selectedGenre }) => {
+  return <Home fetchMovies={getUpcoming} selectedGenre={selectedGenre} />;
 };
 
 export default Upcoming;
