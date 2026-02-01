@@ -32,6 +32,7 @@ const Sidebar = ({ onGenreSelect, selectedGenre, isOpen, onClose }) => {
     { name: 'Popular', path: '/popular' },
     { name: 'Top Rated', path: '/top-rated' },
     { name: 'Upcoming', path: '/upcoming' },
+    { name: 'Watch Trailer', path: '/watch-trailer' },
   ];
 
   return (

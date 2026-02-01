@@ -7,6 +7,7 @@ import NowPlaying from './pages/NowPlaying';
 import Popular from './pages/Popular';
 import TopRated from './pages/TopRated';
 import Upcoming from './pages/Upcoming';
+import WatchTrailer from './pages/WatchTrailer';
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -33,6 +34,7 @@ function App() {
               <Route path="/popular" element={<Popular selectedGenre={selectedGenre} />} />
               <Route path="/top-rated" element={<TopRated selectedGenre={selectedGenre} />} />
               <Route path="/upcoming" element={<Upcoming selectedGenre={selectedGenre} />} />
+              <Route path="/watch-trailer" element={<WatchTrailer />} />
             </Routes>
           </main>
         </div>

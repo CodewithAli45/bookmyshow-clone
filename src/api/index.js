@@ -17,5 +17,6 @@ export const getPopular = () => api.get('movie/popular');
 export const getTopRated = () => api.get('movie/top_rated');
 export const getUpcoming = () => api.get('movie/upcoming');
 export const getGenres = () => api.get('genre/movie/list');
+export const getMovieVideos = (movieId) => api.get(`movie/${movieId}/videos`);
 
 export default api;

@@ -20,6 +20,7 @@ const Header = ({ onMenuClick }) => {
         <NavLink to="/popular" className={({ isActive }) => (isActive ? 'active' : '')}>Popular</NavLink>
         <NavLink to="/top-rated" className={({ isActive }) => (isActive ? 'active' : '')}>Top Rated</NavLink>
         <NavLink to="/upcoming" className={({ isActive }) => (isActive ? 'active' : '')}>Upcoming</NavLink>
+        <NavLink to="/watch-trailer" className={({ isActive }) => (isActive ? 'active' : '')}>Watch Trailer</NavLink>
       </nav>
 
       <div className="header__center mobile-only">
