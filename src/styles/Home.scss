@@ -13,6 +13,125 @@
   @media (min-width: 768px) {
     padding: 24px;
   }
+
+  .content-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    padding: 12px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+    .header-left, .header-right {
+      flex: 1;
+      display: flex;
+    }
+
+    .header-right {
+      justify-content: flex-end;
+    }
+
+    .header-center {
+      flex: 2;
+      display: flex;
+      justify-content: center;
+      min-width: 250px;
+    }
+
+    .sort-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #333;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+
+      &:hover {
+        background: #f84464;
+        color: #fff;
+        border-color: #f84464;
+        transform: translateY(-2px);
+      }
+
+      &.active {
+        background: #f84464;
+        color: #fff;
+        border-color: #f84464;
+      }
+    }
+
+    .search-bar {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 8px 15px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.1);
+      transition: all 0.2s ease;
+
+      &:focus-within {
+        box-shadow: 0 4px 12px rgba(248, 68, 100, 0.15);
+        border-color: #f84464;
+      }
+
+      svg {
+        color: #888;
+        margin-right: 10px;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-size: 0.95rem;
+        background: transparent;
+
+        &::placeholder {
+          color: #bbb;
+        }
+      }
+    }
+
+    .page-info {
+      font-size: 0.9rem;
+      color: #333;
+      font-weight: 500;
+      background: rgba(255,255,255,0.5);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: stretch;
+      
+      .header-left, .header-center, .header-right {
+        flex: none;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .sort-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
 }
 
 .movie-grid {

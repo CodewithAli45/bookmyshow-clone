@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IoClose } from 'react-icons/io5';
-import { getMovieVideos } from '../api';
+import { getMovieVideos, getTVVideos } from '../api';
 import '../styles/TrailerModal.scss';
 
 const TrailerModal = ({ movie, onClose }) => {
@@ -12,7 +12,11 @@ const TrailerModal = ({ movie, onClose }) => {
     const fetchVideo = async () => {
       try {
         setLoading(true);
-        const response = await getMovieVideos(movie.id);
+        const isTV = !!(movie.name || movie.first_air_date);
+        const response = isTV 
+          ? await getTVVideos(movie.id) 
+          : await getMovieVideos(movie.id);
+        
         const videos = response.data.results;
         // Find trailer or teaser
         const trailer = videos.find(v => v.type === 'Trailer') || videos.find(v => v.type === 'Teaser');

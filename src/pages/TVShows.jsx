@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { searchMovies } from '../api';
-import MovieCard from './MovieCard';
-import MovieDetailsModal from './MovieDetailsModal';
-import TrailerModal from './TrailerModal';
-import Pagination from './Pagination';
+import { getTopTVShows, searchTVShows, getTVVideos } from '../api';
+import MovieCard from '../components/MovieCard';
+import { AnimatePresence } from 'framer-motion';
+import MovieDetailsModal from '../components/MovieDetailsModal';
+import TrailerModal from '../components/TrailerModal';
+import Pagination from '../components/Pagination';
 import '../styles/Home.scss';
-import { motion, AnimatePresence } from 'framer-motion';
 import { BiSort, BiSearch } from 'react-icons/bi';
 
-const Home = ({ fetchMovies, selectedGenre }) => {
-  const [movies, setMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
+const TVShows = () => {
+  const [shows, setShows] = useState([]);
+  const [filteredShows, setFilteredShows] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [trailerMovie, setTrailerMovie] = useState(null);
+  const [selectedShow, setSelectedShow] = useState(null);
+  const [trailerShow, setTrailerShow] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   
@@ -21,25 +21,20 @@ const Home = ({ fetchMovies, selectedGenre }) => {
   const [sortOrder, setSortOrder] = useState('auto'); // 'auto', 'name', 'date'
 
   useEffect(() => {
-    setCurrentPage(1);
-    setSearchQuery('');
-  }, [fetchMovies]);
-
-  useEffect(() => {
     const getData = async () => {
       try {
         setLoading(true);
         let response;
         if (searchQuery.trim()) {
-          response = await searchMovies(searchQuery, currentPage);
+          response = await searchTVShows(searchQuery, currentPage);
         } else {
-          response = await fetchMovies(currentPage);
+          response = await getTopTVShows(currentPage);
         }
-        setMovies(response.data.results);
+        setShows(response.data.results);
         setTotalPages(Math.min(response.data.total_pages, 500));
         window.scrollTo(0, 0);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Failed to fetch TV shows", error);
       } finally {
         setLoading(false);
       }
@@ -50,25 +45,20 @@ const Home = ({ fetchMovies, selectedGenre }) => {
     }, searchQuery ? 500 : 0);
 
     return () => clearTimeout(timer);
-  }, [fetchMovies, currentPage, searchQuery]);
+  }, [currentPage, searchQuery]);
 
   useEffect(() => {
-    let result = [...movies];
+    let result = [...shows];
     
-    // Apply Genre Filter
-    if (selectedGenre !== null) {
-      result = result.filter(movie => movie.genre_ids.includes(selectedGenre));
-    }
-
     // Apply Sorting
     if (sortOrder === 'name') {
-      result.sort((a, b) => (a.title || a.name || '').localeCompare(b.title || b.name || ''));
+      result.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
     } else if (sortOrder === 'date') {
-      result.sort((a, b) => new Date(b.release_date || b.first_air_date || 0) - new Date(a.release_date || a.first_air_date || 0));
+      result.sort((a, b) => new Date(b.first_air_date || 0) - new Date(a.first_air_date || 0));
     }
     
-    setFilteredMovies(result);
-  }, [selectedGenre, movies, sortOrder]);
+    setFilteredShows(result);
+  }, [shows, sortOrder]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -96,7 +86,7 @@ const Home = ({ fetchMovies, selectedGenre }) => {
               <BiSearch size={20} />
               <input 
                 type="text" 
-                placeholder="Search movies..." 
+                placeholder="Search TV shows..." 
                 value={searchQuery}
                 onChange={(e) => {
                     setSearchQuery(e.target.value);
@@ -112,47 +102,47 @@ const Home = ({ fetchMovies, selectedGenre }) => {
         </div>
 
         {loading ? (
-             <div className="loading">Loading...</div>
+          <div className="loading">Loading...</div>
         ) : (
-            <>
-              <motion.div layout className="movie-grid">
-                <AnimatePresence mode="popLayout">
-                  {filteredMovies.map((movie) => (
-                    <MovieCard 
-                        key={movie.id} 
-                        movie={movie} 
-                        onClick={() => setSelectedMovie(movie)}
-                    />
-                  ))}
-                </AnimatePresence>
-              </motion.div>
-              <Pagination 
-                currentPage={currentPage} 
-                totalPages={totalPages} 
-                onPageChange={handlePageChange} 
-              />
-            </>
+          <>
+            <div className="movie-grid">
+              {filteredShows.map((show) => (
+                <MovieCard 
+                  key={show.id} 
+                  movie={show} 
+                  onClick={() => setSelectedShow(show)}
+                  className="tv-show-card"
+                />
+              ))}
+            </div>
+
+            <Pagination 
+              currentPage={currentPage} 
+              totalPages={totalPages} 
+              onPageChange={handlePageChange} 
+            />
+          </>
         )}
       </main>
 
       <AnimatePresence>
-        {selectedMovie && (
+        {selectedShow && (
           <MovieDetailsModal 
-            movie={selectedMovie} 
-            onClose={() => setSelectedMovie(null)}
+            movie={selectedShow} 
+            onClose={() => setSelectedShow(null)}
             onWatchTrailer={() => {
-              setTrailerMovie(selectedMovie);
-              setSelectedMovie(null);
+              setTrailerShow(selectedShow);
+              setSelectedShow(null);
             }}
           />
         )}
       </AnimatePresence>
 
       <AnimatePresence>
-        {trailerMovie && (
+        {trailerShow && (
           <TrailerModal 
-            movie={trailerMovie} 
-            onClose={() => setTrailerMovie(null)} 
+            movie={trailerShow} 
+            onClose={() => setTrailerShow(null)} 
           />
         )}
       </AnimatePresence>
@@ -160,4 +150,4 @@ const Home = ({ fetchMovies, selectedGenre }) => {
   );
 };
 
-export default Home;
+export default TVShows;

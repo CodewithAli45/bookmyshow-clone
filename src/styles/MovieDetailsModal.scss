@@ -111,6 +111,38 @@
       @media (min-width: 768px) {
         font-size: 1rem;
       }
+
+      .watch-trailer-btn {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background-color: #f84464;
+        color: white;
+        border: none;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 12px rgba(248, 68, 100, 0.3);
+
+        &:hover {
+          background-color: #e63e5c;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(248, 68, 100, 0.4);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+
+        @media (max-width: 480px) {
+          padding: 4px 10px;
+          font-size: 0.75rem;
+        }
+      }
     }
   }
 }

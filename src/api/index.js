@@ -12,11 +12,15 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-export const getNowPlaying = () => api.get('movie/now_playing');
-export const getPopular = () => api.get('movie/popular');
-export const getTopRated = () => api.get('movie/top_rated');
-export const getUpcoming = () => api.get('movie/upcoming');
+export const getNowPlaying = (page = 1) => api.get('movie/now_playing', { params: { page } });
+export const getPopular = (page = 1) => api.get('movie/popular', { params: { page } });
+export const getTopRated = (page = 1) => api.get('movie/top_rated', { params: { page } });
+export const getUpcoming = (page = 1) => api.get('movie/upcoming', { params: { page } });
 export const getGenres = () => api.get('genre/movie/list');
 export const getMovieVideos = (movieId) => api.get(`movie/${movieId}/videos`);
+export const getTopTVShows = (page = 1) => api.get('tv/top_rated', { params: { page } });
+export const getTVVideos = (tvId) => api.get(`tv/${tvId}/videos`);
+export const searchMovies = (query, page = 1) => api.get('search/movie', { params: { query, page } });
+export const searchTVShows = (query, page = 1) => api.get('search/tv', { params: { query, page } });
 
 export default api;

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { IoClose } from 'react-icons/io5';
+import { BiStar, BiPlayCircle } from 'react-icons/bi';
 import '../styles/MovieDetailsModal.scss';
 
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p/original';
 
-const MovieDetailsModal = ({ movie, onClose }) => {
+const MovieDetailsModal = ({ movie, onClose, onWatchTrailer }) => {
   // Close on Escape key
   useEffect(() => {
     const handleEsc = (e) => {
@@ -16,6 +17,9 @@ const MovieDetailsModal = ({ movie, onClose }) => {
   }, [onClose]);
 
   if (!movie) return null;
+
+  const title = movie.title || movie.name;
+  const releaseDate = movie.release_date || movie.first_air_date;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -34,15 +38,21 @@ const MovieDetailsModal = ({ movie, onClose }) => {
         <div className="modal-header">
           <img 
             src={movie.backdrop_path ? `${IMG_BASE_URL}${movie.backdrop_path}` : `${IMG_BASE_URL}${movie.poster_path}`} 
-            alt={movie.title} 
+            alt={title} 
             className="modal-backdrop"
           />
           <div className="modal-title-overlay">
-            <h2>{movie.title}</h2>
+            <h2>{title}</h2>
             <div className="modal-meta">
               <span>⭐ {movie.vote_average?.toFixed(1)}</span>
               <span>•</span>
-              <span>{movie.release_date?.split('-')[0]}</span>
+              <span>{releaseDate?.split('-')[0]}</span>
+              {onWatchTrailer && (
+                <button className="watch-trailer-btn" onClick={onWatchTrailer}>
+                  <BiPlayCircle size={20} />
+                  Watch Trailer
+                </button>
+              )}
             </div>
           </div>
         </div>

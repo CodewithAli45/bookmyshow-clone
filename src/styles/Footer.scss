@@ -1,13 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&family=Pacifico&display=swap');
+
 .footer-container {
   background-color: #333545;
   color: #fff;
-  text-align: center;
   padding: 20px;
   margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+
   
   p {
     margin: 0;
     font-size: 0.9rem;
     opacity: 0.8;
   }
+  .footer-text {
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: "Great Vibes", cursive;
+    font-weight: 400;
+    font-style: normal;
+  } 
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    gap: 5px;
+
+    p {
+      font-size: 0.6rem;
+    }
+    .footer-text {
+      font-size: 0.7rem;
+    }
+  }
+  
 }
+
